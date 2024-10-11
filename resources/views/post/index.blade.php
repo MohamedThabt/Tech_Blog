@@ -30,9 +30,9 @@
                 <tr>
                     <td>{{$loop->iteration}}</td>
                     <td>{{$post->title}}</td>
-                    <td>{{$post->description}}</td>
+                    <td>{{ \Str::limit( $post->description,50)}}</td>
                     <td>1</td>
-                    <td>
+                    <td >
                         <form action="{{url('posts/'.$post->id.'/edit')}}" method="post" class="d-inline-block">
                             @csrf
                             @method('PUT')

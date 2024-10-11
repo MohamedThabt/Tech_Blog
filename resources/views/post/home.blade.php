@@ -12,8 +12,8 @@
                 <article class="card mb-4">
                     <div class="card-body">
                         <h2 class="card-title">{{$post->title}}</h2>
-                        <p class="card-text">{{$post->description}}</p>
-                        <a href="#" class="btn btn-primary">Read More</a>
+                        <p class="card-text">{{ \Str::limit( $post->description,50)}}</p>
+                        <a href="{{route('posts.show',$post->id)}}" class="btn btn-primary">Read More</a>
                     </div>
                     <div class="card-footer text-muted">
                     {{ $post->use_id .$post->created_at->diffForHumans()}}

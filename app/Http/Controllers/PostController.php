@@ -55,6 +55,7 @@ class PostController extends Controller
         return view('post.edit',['post'=>$post]);
     }
 
+    // update post
     public function update(Request $request,$id){
         $post = post::findOrFail($id);
         // $post->update($request->all());
@@ -63,5 +64,11 @@ class PostController extends Controller
         $post->description = $request->description;
         $post->save();
         return redirect()->route('posts.index')->with('success', 'Post updated successfully');
+    }
+
+    // show post
+    public function show($id){
+        $post = post::findOrFail($id);
+        return view('post.show',['post'=>$post]);
     }
 }
