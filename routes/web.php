@@ -11,7 +11,7 @@ Route::get('posts/index', [PostController::class, 'index']);
 
 Route::get('posts/create', [PostController::class, 'create']);
 
-Route::post('posts/store', [PostController::class, 'create']);
+Route::post('posts', [PostController::class, 'store']);
 
 Route::delete('posts/{post}', [PostController::class, 'destroy']);
 

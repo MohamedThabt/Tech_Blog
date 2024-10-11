@@ -10,7 +10,11 @@
 
         <!-- Add Post Button as Anchor -->
         <a href="{{url('posts/create')}}" class="btn-add-post mt-3">Add Post</a>
-
+        @if(session('delete'))
+            <div class="alert alert-success">
+                {{ session('delete') }}
+            </div>
+        @endif
         <table class="table table-striped table-hover mt-4">
             <thead>
                 <tr>
@@ -22,20 +26,25 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($posts as $post)
                 <tr>
+                    <td>{{$loop->iteration}}</td>
+                    <td>{{$post->title}}</td>
+                    <td>{{$post->description}}</td>
                     <td>1</td>
-                    <td>Optimizing Database Queries</td>
-                    <td>Tips for improving database performance in high-traffic applications</td>
-                    <td>Mohamed Thabet</td>
                     <td>
-                        <form action="{{url('posts/1/edit')}}" method="post" class="d-inline-block">
+                        <form action="{{url('posts/'.$post->id.'/edit')}}" method="post" class="d-inline-block">
+                            @csrf
                             <button class="btn btn-edit"><i class="fas fa-edit"></i></button>
                         </form>
-                        <form action="{{url('posts/1')}}" method="post" class="d-inline-block">
+                        <form action="{{url('posts/'.$post->id)}}" method="post" class="d-inline-block">
+                            @csrf
+                            @method('DELETE')
                             <button class="btn btn-delete"><i class="fas fa-trash-alt"></i></button>
                         </form>
                     </td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
