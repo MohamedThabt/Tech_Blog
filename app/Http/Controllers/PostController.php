@@ -44,7 +44,18 @@ class PostController extends Controller
     }
 
     //edit post
-    public function edit(){
+    public function edit($id){
+        $post = post::findOrFail($id);// we can use find() but it will return null if the post is not found
+        return view('post.edit',['post'=>$post]);
+    }
 
+    public function update(Request $request,$id){
+        $post = post::findOrFail($id);
+        // $post->update($request->all());
+        //or
+        $post->title = $request->title;
+        $post->description = $request->description;
+        $post->save();
+        return redirect()->route('posts.index')->with('success', 'Post updated successfully');
     }
 }

@@ -35,6 +35,7 @@
                     <td>
                         <form action="{{url('posts/'.$post->id.'/edit')}}" method="post" class="d-inline-block">
                             @csrf
+                            @method('PUT')
                             <button class="btn btn-edit"><i class="fas fa-edit"></i></button>
                         </form>
                         <form action="{{url('posts/'.$post->id)}}" method="post" class="d-inline-block">
