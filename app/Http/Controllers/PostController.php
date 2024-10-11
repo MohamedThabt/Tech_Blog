@@ -9,13 +9,14 @@ class PostController extends Controller
 {
     // home page
     public function home(){
-        $posts = post::all();
+        $posts = post::paginate(10);
         return view('post.home',['posts'=>$posts]);
     }
 
     // show all posts
     public function index(){
-        $posts = post::all();
+        // $posts = post::all();
+        $posts = post::paginate(10);
         return view('post.index',['posts'=> $posts]);
     }
 
@@ -71,4 +72,12 @@ class PostController extends Controller
         $post = post::findOrFail($id);
         return view('post.show',['post'=>$post]);
     }
+
+    // search post
+    public function search(Request $request){
+        $search = $request->search;
+        $posts = post::where('title','like','%'.$search.'%')->paginate(10);
+        return view('post.search',['posts'=>$posts]);
+    }
+    
 }

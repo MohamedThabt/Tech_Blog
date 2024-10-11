@@ -14,7 +14,7 @@
                         <p class="card-text">{{$post->description}}</p>
                     </div>
                     <div class="card-footer text-muted">
-                    {{ $post->use_id .$post->created_at->diffForHumans()}}
+                    {{ $post->user->name ." ".$post->created_at->diffForHumans()}}
                     </div>
                 </article>
             </div>

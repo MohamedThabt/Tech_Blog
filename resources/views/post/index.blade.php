@@ -29,9 +29,9 @@
                 @foreach ($posts as $post)
                 <tr>
                     <td>{{$loop->iteration}}</td>
-                    <td>{{$post->title}}</td>
+                    <td>{{\Str::limit($post->title,10)}}</td>
                     <td>{{ \Str::limit( $post->description,50)}}</td>
-                    <td>1</td>
+                    <td>{{$post->user->name}}</td>
                     <td >
                         <form action="{{url('posts/'.$post->id.'/edit')}}" method="post" class="d-inline-block">
                             @csrf
@@ -48,6 +48,9 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="d-flex justify-content-center mt-4">
+            {{ $posts->links() }}
+        </div>
     </div>
 
     @endsection
