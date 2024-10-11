@@ -6,20 +6,22 @@
 <!-- main section  -->
 <main class="container my-5">
         <h1 class="text-center mb-5">Welcome to CodeCraft Insights</h1>
+        @foreach ($posts as $post)
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <article class="card mb-4">
                     <div class="card-body">
-                        <h2 class="card-title">Optimizing Database Queries for High-Traffic Applications</h2>
-                        <p class="card-text">Handling high-traffic applications requires a deep understanding of database optimization. In this post, we'll explore advanced techniques for optimizing database queries to improve performance and reduce server load, ensuring your backend can handle the pressure of scaling.</p>
+                        <h2 class="card-title">{{$post->title}}</h2>
+                        <p class="card-text">{{$post->description}}</p>
                         <a href="#" class="btn btn-primary">Read More</a>
                     </div>
                     <div class="card-footer text-muted">
-                        Posted on October 10, 2024
+                    {{ $post->use_id .$post->created_at->diffForHumans()}}
                     </div>
                 </article>
             </div>
         </div>
+        @endforeach
     </main>
 
     

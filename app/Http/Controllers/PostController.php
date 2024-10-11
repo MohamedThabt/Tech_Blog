@@ -7,6 +7,12 @@ use App\Models\post;
 
 class PostController extends Controller
 {
+    // home page
+    public function home(){
+        $posts = post::all();
+        return view('post.home',['posts'=>$posts]);
+    }
+
     // show all posts
     public function index(){
         $posts = post::all();

@@ -3,9 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
-Route::get('/', function () {
-    return view('post.home');
-});
+Route::get('/', [PostController::class, 'home'])->name('home');
 
 Route::get('posts/index', [PostController::class, 'index'])->name('posts.index');
 
