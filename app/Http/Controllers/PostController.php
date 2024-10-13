@@ -27,24 +27,32 @@ class PostController extends Controller
     }
 
     // store post
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         // validate request
         $request->validate([
-            'title' => ['required','string','min:3','max:255'],
-            'description' => ['required','string','min:10','max:500'],
-            'user_id' => ['required','exists:users,id'],
-             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif']
+            'title' => ['required', 'string', 'min:3', 'max:255'],
+            'description' => ['required', 'string', 'min:10', 'max:500'],
+            'user_id' => ['required', 'exists:users,id'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif']
         ]);
-        // insertion into database
-        $image = $request->file('image')->store('images','public');
-        $post = new post();  
+    
+        // Create new post
+        $post = new Post();  
         $post->title = $request->title;
         $post->description = $request->description;
-        $post->user_id = $request->user_id ;
-        $post->image= $image;
+        $post->user_id = $request->user_id;
+    
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+            $post->image = $imagePath;
+        }
+    
         $post->save();
+    
         // session flash message
-        return back()->with('success','Post created successfully');
+        return back()->with('success', 'Post created successfully');
     }
 
     // delete post

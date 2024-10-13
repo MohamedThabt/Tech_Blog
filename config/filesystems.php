@@ -36,13 +36,13 @@ return [
             'serve' => true,
             'throw' => false,
         ],
-
+        
+        
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/public',
+            'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
-            'throw' => false,
         ],
 
         's3' => [
@@ -69,9 +69,8 @@ return [
     | the locations of the links and the values should be their targets.
     |
     */
-
     'links' => [
-        public_path('public') => storage_path('app/public'),
+        public_path('storage') => storage_path('app/public'),
     ],
 
 ];

@@ -34,11 +34,7 @@
                     <td>{{ \Str::limit( $post->description,50)}}</td>
                     <td>{{$post->user->name}}</td>
                     <td>
-                        @if($post->image)
-                            <img src="{{ asset('public/' . $post->image) }}" alt="{{ $post->title }}" class="img-fluid rounded-circle" style="width: 50px; height: 50px; object-fit: cover;">
-                        @else
-                            <span class="text-muted">No image</span>
-                        @endif
+                            <img src="{{ $post->image() }}" alt="{{ $post->title }}" class="img-fluid rounded-circle" style="width: 50px; height: 50px; object-fit: cover;">
                     </td>
                     <td >
                         <form action="{{url('posts/'.$post->id.'/edit')}}" method="post" class="d-inline-block">
