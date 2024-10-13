@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', [PostController::class, 'home'])->name('home');
 
@@ -20,3 +21,7 @@ Route::put('posts/{post}/edit', [PostController::class, 'edit']);
 Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
 
 Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
+
+Route::resource('users', UserController::class);
+
+Route::get('user/{id}/posts',[UserController::class,'posts'])->name('user.posts');

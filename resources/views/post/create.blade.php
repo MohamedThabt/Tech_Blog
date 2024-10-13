@@ -7,10 +7,10 @@
         <div class="col-md-8">
             <div class="card shadow-sm" style="border-color: #526D82;">
                 <div class="card-header" style="background-color: #526D82; color: white;">
-                    <h2 class="mb-0"><i class="fas fa-edit"></i> Add New Post</h2>
+                    <h2 class="mb-0"><i class="fas fa-edit"></i> Add New Post </h2>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{url('posts')}}">
+                <form method="POST" action="{{url('posts')}}">
                         @csrf
                         @if($errors->any())
                             <div class="alert alert-danger">
@@ -35,8 +35,15 @@
                             <textarea class="form-control" name="description" rows="5" style="border-color: #526D82;">{{ old('description') }}</textarea>
                         </div>
                         <div class="mb-3">
-                            <label for="user" class="form-label" style="color: #526D82;"><i class="fas fa-user"></i> User</label>
-                            <input type="text" class="form-control" name="user" style="border-color: #526D82;" value="{{ old('user') }}">
+                            <label for="user_id" class="form-label" style="color: #526D82;"><i class="fas fa-user"></i> Users</label>
+                            <select class="form-select" name="user_id" id="user_id" style="border-color: #526D82;">
+                                <option value="">Select a user</option>
+                                @foreach($users as $user)
+                                    <option value="{{ $user->id }}" {{ old('user_id') == $user->id ? 'selected' : '' }}>
+                                        {{ $user->name }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-lg w-100" style="background-color: #526D82; color: white;">
                             <i class="fas fa-save"></i> Save Post

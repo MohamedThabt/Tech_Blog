@@ -5,16 +5,7 @@
     <div class="container mt-5">
         <h2 class="mb-4">Blog Posts Management</h2>
         
-        <!-- Headline for All Posts -->
-        <h4 class="mb-3">All Posts</h4>
-
-        <!-- Add Post Button as Anchor -->
-        <a href="{{url('posts/create')}}" class="btn-add-post mt-3">Add Post</a>
-        @if(session('delete'))
-            <div class="alert alert-success">
-                {{ session('delete') }}
-            </div>
-        @endif
+        <h4 class="mb-3">All Posts For{{$user->name}}</h4>
         <table class="table table-striped table-hover mt-4">
             <thead>
                 <tr>
@@ -26,7 +17,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($posts as $post)
+                @foreach ($user->posts as $post)
                 <tr>
                     <td>{{$loop->iteration}}</td>
                     <td>{{\Str::limit($post->title,10)}}</td>
@@ -48,9 +39,6 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="d-flex justify-content-center mt-4">
-            {{ $posts->links() }}
-        </div>
     </div>
 
     @endsection

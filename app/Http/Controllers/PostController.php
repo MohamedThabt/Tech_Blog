@@ -4,25 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\post;
-
+use App\Models\User;
 class PostController extends Controller
 {
     // home page
     public function home(){
-        $posts = post::paginate(10);
-        return view('post.home',['posts'=>$posts]);
+        $posts = Post::orderBy('id', 'DESC')->paginate(10);
+        return view('post.home', compact('posts'));
     }
 
     // show all posts
     public function index(){
         // $posts = post::all();
-        $posts = post::paginate(10);
+        $posts = Post::orderBy('id', 'DESC')->paginate(10);
         return view('post.index',['posts'=> $posts]);
     }
 
     // add post
     public function create(){
-        return view('post.create');
+        $users= User::select('id','name')->get();
+        return view('post.create',compact('users'));
     }
 
     // store post
@@ -31,13 +32,13 @@ class PostController extends Controller
         $request->validate([
             'title' => ['required','string','min:3','max:255'],
             'description' => ['required','string','min:10','max:500'],
-            'user' => ['required','exists:users,name']
+            'user_id' => ['required','exists:users,id']
         ]);
         // insertion into database
         $post = new post();  
         $post->title = $request->title;
         $post->description = $request->description;
-        $post->user_id = 1;
+        $post->user_id = $request->user_id ;
         $post->save();
         // session flash message
         return back()->with('success','Post created successfully');
