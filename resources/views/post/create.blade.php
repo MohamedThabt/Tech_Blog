@@ -10,7 +10,7 @@
                     <h2 class="mb-0"><i class="fas fa-edit"></i> Add New Post </h2>
                 </div>
                 <div class="card-body">
-                <form method="POST" action="{{url('posts')}}">
+                <form method="POST" action="{{url('posts')}}" enctype="multipart/form-data">
                         @csrf
                         @if($errors->any())
                             <div class="alert alert-danger">
@@ -44,6 +44,10 @@
                                     </option>
                                 @endforeach
                             </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="image" class="form-label" style="color: #526D82;"><i class="fas fa-image"></i> Image</label>
+                            <input type="file" class="form-control" name="image" id="image" style="border-color: #526D82;">
                         </div>
                         <button type="submit" class="btn btn-lg w-100" style="background-color: #526D82; color: white;">
                             <i class="fas fa-save"></i> Save Post

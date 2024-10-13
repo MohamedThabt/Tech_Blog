@@ -22,6 +22,7 @@
                     <th>Title</th>
                     <th>Description</th>
                     <th>Writer</th>
+                    <th>Image</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -32,6 +33,13 @@
                     <td>{{\Str::limit($post->title,10)}}</td>
                     <td>{{ \Str::limit( $post->description,50)}}</td>
                     <td>{{$post->user->name}}</td>
+                    <td>
+                        @if($post->image)
+                            <img src="{{ asset('public/' . $post->image) }}" alt="{{ $post->title }}" class="img-fluid rounded-circle" style="width: 50px; height: 50px; object-fit: cover;">
+                        @else
+                            <span class="text-muted">No image</span>
+                        @endif
+                    </td>
                     <td >
                         <form action="{{url('posts/'.$post->id.'/edit')}}" method="post" class="d-inline-block">
                             @csrf

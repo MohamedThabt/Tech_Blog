@@ -32,13 +32,16 @@ class PostController extends Controller
         $request->validate([
             'title' => ['required','string','min:3','max:255'],
             'description' => ['required','string','min:10','max:500'],
-            'user_id' => ['required','exists:users,id']
+            'user_id' => ['required','exists:users,id'],
+             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif']
         ]);
         // insertion into database
+        $image = $request->file('image')->store('images','public');
         $post = new post();  
         $post->title = $request->title;
         $post->description = $request->description;
         $post->user_id = $request->user_id ;
+        $post->image= $image;
         $post->save();
         // session flash message
         return back()->with('success','Post created successfully');
