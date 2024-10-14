@@ -1,46 +1,93 @@
-
 @extends('layout.app')
 
 @section('content')
 
-<!-- main section  -->
-<main class="container my-5">
-        <h1 class="text-center mb-5">Welcome to Tech Blog</h1>
-        @foreach ($posts as $post)
-        <div class="row">
-            <div class="col-md-8 mx-auto">
-                <article class="card mb-4">
-                    <img src="{{ $post->image() }}" class="card-img-top" alt="{{ $post->title }}">
-                    <div class="card-body">
-                        <h2 class="card-title">{{$post->title}}</h2>
-                        <p class="card-text">{{ \Str::limit( $post->description,50)}}</p>
-                        <a href="{{route('posts.show',$post->id)}}" class="btn btn-primary">Read More</a>
-                    </div>
-                    <div class="card-footer text-muted">
-                    {{ $post->user->name ." ".$post->created_at->diffForHumans()}}
-                    </div>
-                </article>
-            </div>
+
+    <!-- Hero Section -->
+    <header class="py-5 text-white" style="background-color: #526D82;">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold">Welcome to Tech Blog</h1>
+            <p class="lead">Explore the latest in technology and programming</p>
         </div>
-        @endforeach
-        <div class="d-flex justify-content-center mt-4">
-            {{ $posts->links() }}
+    </header>
+
+    <!-- Main Content -->
+    <main class="container py-5">
+        <div class="row g-4">
+            <!-- Blog Posts -->
+            <div class="col-lg-8">
+                <div class="row row-cols-1 row-cols-md-2 g-4">
+                    @foreach ($posts as $post)
+                    <div class="col">
+                        <article class="card h-100 shadow">
+                            <img src="{{ $post->image() }}" class="card-img-top" alt="{{ $post->title }}" style="height: 200px; object-fit: cover;">
+                            <div class="card-body d-flex flex-column">
+                                <h2 class="card-title h5">{{$post->title}}</h2>
+                                <p class="card-text text-muted small">
+                                    <i class="fas fa-user me-2"></i>{{ $post->user->name }}
+                                    <i class="fas fa-calendar-alt ms-3 me-2"></i>{{ $post->created_at->format('M d, Y') }}
+                                </p>
+                                <p class="card-text flex-grow-1">{{ \Str::limit($post->description, 100) }}</p>
+                                <a href="{{route('posts.show',$post->id)}}" class="btn btn-primary mt-auto" style="background-color: #526D82; border-color: #526D82;">Read More <i class="fas fa-arrow-right ms-1"></i></a>
+                            </div>
+                        </article>
+                    </div>
+                    @endforeach
+                </div>
+                <!-- Pagination -->
+                <div class="d-flex justify-content-center mt-4">
+                    {{ $posts->links() }}
+                </div>
+            </div>
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <div class="card mb-4 shadow">
+                    <div class="card-header text-white" style="background-color: #526D82;">
+                        <h3 class="h5 mb-0">About Tech Blog</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Tech Blog is your go-to source for the latest technology news, programming tips, and industry insights.</p>
+                    </div>
+                </div>
+                <div class="card shadow">
+                    <div class="card-header text-white" style="background-color: #526D82;">
+                        <h3 class="h5 mb-0">Categories</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><a href="#" class="text-decoration-none">Web Development</a></li>
+                            <li class="list-group-item"><a href="#" class="text-decoration-none">Mobile Apps</a></li>
+                            <li class="list-group-item"><a href="#" class="text-decoration-none">Artificial Intelligence</a></li>
+                            <li class="list-group-item"><a href="#" class="text-decoration-none">Cybersecurity</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
-    
-    <!-- footer section -->
-    <footer class="py-3 mt-5">
-        <div class="container text-center">
-            <p>&copy; 2024 CodeCraft Insights. Created by Mohamed Thabet, Backend Engineer.</p>
-            <div class="social-icons">
-                <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="text-white me-3"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" class="text-white"><i class="fab fa-github"></i></a>
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-md-6">
+                    <h5>CodeCraft Insights</h5>
+                    <p>Empowering developers with cutting-edge insights and knowledge.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <h5>Connect With Us</h5>
+                    <div>
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-github fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p class="mb-0">&copy; 2024 CodeCraft Insights. Created by Mohamed Thabet, Backend Engineer.</p>
             </div>
         </div>
     </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-
 @endsection

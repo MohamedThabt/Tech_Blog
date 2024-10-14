@@ -36,8 +36,13 @@
                             <textarea class="form-control" name="description" rows="5" style="border-color: #526D82;">{{$post->description}}</textarea>
                         </div>
                         <div class="mb-3">
-                            <label for="user" class="form-label" style="color: #526D82;"><i class="fas fa-user"></i> User</label>
-                            <input type="text" class="form-control" name="user" style="border-color: #526D82;" value="{{ $post->user }}">
+                            <label for="user_id" class="form-label" style="color: #526D82;"><i class="fas fa-user"></i> Users</label>
+                            <select class="form-select" name="user_id" id="user_id" style="border-color: #526D82;" disabled>
+                                <option value="{{ $post->user_id }}" selected>
+                                    {{ $post->user->name }}
+                                </option>
+                            </select>
+                            <input type="hidden" name="user_id" value="{{ $post->user_id }}">
                         </div>
                         <button type="submit" class="btn btn-lg w-100" style="background-color: #526D82; color: white;">
                             <i class="fas fa-save"></i> Save Post

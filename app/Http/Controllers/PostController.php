@@ -64,8 +64,9 @@ class PostController extends Controller
 
     //edit post
     public function edit($id){
-        $post = post::findOrFail($id);// we can use find() but it will return null if the post is not found
-        return view('post.edit',['post'=>$post]);
+        $post = Post::findOrFail($id); // we can use find() but it will return null if the post is not found
+        $users = User::select('id', 'name')->get();
+        return view('post.edit', ['post' => $post, 'users' => $users]);
     }
 
     // update post
