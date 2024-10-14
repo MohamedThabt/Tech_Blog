@@ -7,157 +7,211 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-    :root {
-        --primary-color: #526D82;
-        --secondary-color: #27374D;
-        --background-color: #f8f9fa;
-        --text-color: #333;
-        --accent-color: #9DB2BF;
-        --primary-light: #7593a8;
-        --primary-dark: #3e5262;
-    }
+        :root {
+            --primary-color: #526D82;
+            --secondary-color: #27374D;
+            --background-color: #f8f9fa;
+            --text-color: #333;
+            --accent-color: #9DB2BF;
+            --primary-light: #7593a8;
+            --primary-dark: #3e5262;
+        }
 
-    /* Make the html and body full height */
-    html, body {
-        height: 100%;
-        margin: 0;
-    }
+        /* Global Styles */
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
 
-    body {
-        background-color: var(--background-color);
-        color: var(--text-color);
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh; /* Full height for the body */
-    }
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
-    main {
-        flex-grow: 1; /* Main content should grow and fill available space */
-    }
+        main {
+            flex-grow: 1;
+        }
 
-    .navbar {
-        background-color: var(--primary-color);
-    }
+        /* Navbar Styles */
+        .navbar {
+            background-color: var(--primary-color);
+        }
 
-    .nav-link, .navbar-brand {
-        color: white !important;
-    }
+        .nav-link, .navbar-brand {
+            color: white !important;
+            transition: color 0.3s ease;
+        }
 
-    .btn-primary {
-        background-color: var(--secondary-color);
-        border-color: var(--secondary-color);
-    }
+        .nav-link:hover, .navbar-brand:hover {
+            color: var(--accent-color) !important;
+        }
 
-    .btn-primary:hover {
-        background-color: #1f2937;
-        border-color: #1f2937;
-    }
+        .navbar-nav .nav-item {
+            position: relative;
+        }
 
-    .btn-primary:active, .btn-primary:focus {
-        background-color: #3e5c76 !important;
-        border-color: #3e5c76 !important;
-        box-shadow: 0 0 0 0.25rem rgba(62, 92, 118, 0.5) !important;
-    }
+        .navbar-nav .nav-item::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--accent-color);
+            transition: all 0.3s ease;
+        }
 
-    .card {
-        transition: transform 0.3s;
-        border-color: var(--primary-color);
-        background-color: #ffffff;
-    }
+        .navbar-nav .nav-item:hover::after {
+            width: 100%;
+            left: 0;
+        }
 
-    .card:hover {
-        transform: translateY(-5px);
-    }
+        /* Dropdown Styles */
+        .dropdown-menu {
+            background-color: var(--primary-color);
+            border: none;
+        }
 
-    .card-header {
-        background-color: var(--primary-color);
-        color: white;
-    }
+        .dropdown-item {
+            color: white !important;
+            transition: color 0.3s ease;
+        }
 
-    footer {
-        background-color: var(--secondary-color);
-        color: white;
-        padding: 10px 0;
-        text-align: center;
-    }
+        .dropdown-item:hover {
+            color: var(--accent-color) !important;
+            background-color: var(--primary-color);
+        }
 
-    main {
-        flex-grow: 1;
-    }
+        /* Button Styles */
+        .btn-primary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
 
-    .table {
-        background-color: white;
-    }
+        .btn-primary:hover {
+            background-color: #1f2937;
+            border-color: #1f2937;
+        }
 
-    .table thead {
-        background-color: var(--primary-color);
-        color: white;
-    }
+        .btn-primary:active, .btn-primary:focus {
+            background-color: #3e5c76 !important;
+            border-color: #3e5c76 !important;
+            box-shadow: 0 0 0 0.25rem rgba(62, 92, 118, 0.5) !important;
+        }
 
-    .btn-edit {
-        color: var(--primary-color);
-    }
+        /* Card Styles */
+        .card {
+            transition: transform 0.3s;
+            border-color: var(--primary-color);
+            background-color: #ffffff;
+        }
 
-    .btn-delete {
-        color: #dc3545;
-    }
+        .card:hover {
+            transform: translateY(-5px);
+        }
 
-    .btn-edit:hover, .btn-delete:hover {
-        opacity: 0.8;
-    }
+        .card-header {
+            background-color: var(--primary-color);
+            color: white;
+        }
 
-    /* Add Post Button Styling */
-    .btn-add-post {
-        background: linear-gradient(135deg, #526D82, #7593a8);
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        text-decoration: none;
-        display: inline-block;
-        font-weight: bold;
-        border-radius: 8px;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    }
+        /* Table Styles */
+        .table {
+            background-color: white;
+        }
 
-    /* Hover effect without animation */
-    .btn-add-post:hover {
-        opacity: 0.9;
-        box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15);
-    }
-</style>
+        .table thead {
+            background-color: var(--primary-color);
+            color: white;
+        }
 
+        .btn-edit {
+            color: var(--primary-color);
+        }
 
+        .btn-delete {
+            color: #dc3545;
+        }
+
+        .btn-edit:hover, .btn-delete:hover {
+            opacity: 0.8;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-<!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="{{url('/')}}"><i class="fas fa-code me-2"></i>Thech_Blog</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{url('/')}}">Home</a>
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="{{url('/')}}"><i class="fas fa-code me-2"></i>Tech_Blog</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{url('/')}}">Home</a>
+                </li>
+                @auth
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('posts/index')}}">Posts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('users.index')}}">Users</a>
+                </li>
+                @endauth
+            </ul>
+            <form class="d-flex" action="{{url('posts/search')}}" method="get">
+                <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-light" type="submit"><i class="fas fa-search"></i></button>
+            </form>
+            <ul class="navbar-nav ms-auto">
+                @guest
+                    @if (Route::has('login'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
+                    @endif
+
+                    @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                    @endif
+                @else
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <i class="fas fa-user"></i> {{ Auth::user()->name }}
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{url('posts/index')}}">Posts</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('users.index')}}">Users</a>
-                    </li>
-                </ul>
-                <form class="d-flex" action="{{url('posts/search')}}" method="get">
-                    <input class="form-control me-2" type="search"  name ="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-light" type="submit"><i class="fas fa-search"></i></button>
-                </form>
-            </div>
+                @endguest
+            </ul>
         </div>
-    </nav>
-
-
+    </div>
+</nav>
 
 @yield('content')
+
+<!-- Bootstrap JS CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

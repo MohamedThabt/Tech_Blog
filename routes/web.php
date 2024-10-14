@@ -25,3 +25,6 @@ Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
 Route::resource('users', UserController::class);
 
 Route::get('user/{id}/posts',[UserController::class,'posts'])->name('user.posts');
+Auth::routes();
+
+Route::get('/home', [PostController::class, 'home'])->name('home');

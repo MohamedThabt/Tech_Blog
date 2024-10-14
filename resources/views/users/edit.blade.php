@@ -48,8 +48,9 @@
                                 <div class="mb-3">
                                     <label for="type" class="form-label" style="color: #526D82;"><i class="fas fa-user-tag"></i> Role</label>
                                     <select class="form-select" id="type" name="type" style="border-color: #526D82;" required>
-                                        <option value="user" {{ old('type', $user->type) == 'writer' ? 'selected' : '' }}>Writer</option>
-                                        <option value="admin" {{ old('type', $user->type) == 'admin' ? 'selected' : '' }}>Admin</option>
+                                        <option value="">Select a role</option>
+                                        <option value="writer" {{ old('type') == 'writer' ? 'selected' : '' }}>Writer</option>
+                                        <option value="admin" {{ old('type') == 'admin' ? 'selected' : '' }}>Admin</option>
                                     </select>
                                 </div>
                                 <button type="submit" class="btn btn-lg w-100" style="background-color: #526D82; color: white;">
