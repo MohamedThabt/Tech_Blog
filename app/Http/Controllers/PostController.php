@@ -15,6 +15,7 @@ class PostController extends Controller
 
     // show all posts
     public function index(){
+        
         // $posts = post::all();
         $posts = Post::orderBy('id', 'DESC')->paginate(10);
         return view('post.index',['posts'=> $posts]);
@@ -22,6 +23,8 @@ class PostController extends Controller
 
     // add post
     public function create(){
+        //write authorization 
+        Gate::authorize('create-post');
         $users= User::select('id','name')->get();
         return view('post.create',compact('users'));
     }
@@ -29,6 +32,8 @@ class PostController extends Controller
     // store post
     public function store(Request $request)
     {
+        //write authorization 
+        Gate::authorize('create-post');
         // validate request
         $request->validate([
             'title' => ['required', 'string', 'min:3', 'max:255'],
