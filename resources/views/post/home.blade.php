@@ -5,11 +5,12 @@
 
 <!-- main section  -->
 <main class="container my-5">
-        <h1 class="text-center mb-5">Welcome to CodeCraft Insights</h1>
+        <h1 class="text-center mb-5">Welcome to Tech Blog</h1>
         @foreach ($posts as $post)
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <article class="card mb-4">
+                    <img src="{{ $post->image() }}" class="card-img-top" alt="{{ $post->title }}">
                     <div class="card-body">
                         <h2 class="card-title">{{$post->title}}</h2>
                         <p class="card-text">{{ \Str::limit( $post->description,50)}}</p>
