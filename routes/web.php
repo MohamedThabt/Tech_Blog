@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function(){
 
     Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
-    Route::resource('users', UserController::class);
+    Route::resource('users', UserController::class)->middleware('can:admin-controller');
 
     Route::get('user/{id}/posts',[UserController::class,'posts'])->name('user.posts');
     

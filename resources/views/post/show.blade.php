@@ -11,8 +11,8 @@
                     <span class="fw-bold">{{ $post->user->name }}</span>
                 </span>
                 <span>
-                    <i class="far fa-calendar-alt me-2"></i>
-                    {{ $post->created_at->format('F j, Y') }}
+                    <i class="fas fa-calendar-alt ms-3 me-2"></i>{{ $post->created_at->format('M d, Y') }}
+                    <i class="fas fa-clock ms-3 me-2"></i>{{ $post->created_at->diffForHumans() }}
                 </span>
             </p>
         </header>

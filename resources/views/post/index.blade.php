@@ -5,9 +5,12 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card shadow">
+                <!-- button add post -->
                 <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center" style="background-color: #526D82 !important;">
                     <h2 class="mb-0">Blog Posts Management</h2>
+                    @can('create-post')
                     <a href="{{url('posts/create')}}" class="btn btn-light"><i class="fas fa-plus-circle me-2"></i>Add Post</a>
+                    @endcan
                 </div>
                 <div class="card-body">
                     @if(session('delete'))
@@ -31,7 +34,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($posts as $post)
-                                <tr>
+                                <tr onclick="window.location='{{ url('posts/' . $post->id) }}';" style="cursor: pointer;">
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{\Str::limit($post->title, 20)}}</td>
                                     <td>{{ \Str::limit($post->description, 50)}}</td>
@@ -39,7 +42,8 @@
                                     <td>
                                         <img src="{{ $post->image() }}" alt="{{ $post->title }}" class="img-thumbnail rounded-circle" style="width: 50px; height: 50px; object-fit: cover;">
                                     </td>
-                                    <td>
+                                    <td onclick="event.stopPropagation();">
+                                        @can('post-upate-delete',$post)
                                         <form action="{{url('posts/'.$post->id.'/edit')}}" method="post" class="d-inline-block">
                                             @csrf
                                             @method('PUT')
@@ -50,6 +54,7 @@
                                             @method('DELETE')
                                             <button class="btn btn-delete"><i class="fas fa-trash-alt"></i></button>
                                         </form>
+                                        @endcan
                                     </td>
                                 </tr>
                                 @endforeach

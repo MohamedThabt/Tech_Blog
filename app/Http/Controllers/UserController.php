@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
-   
     public function index()
     {
+         // Admin Authorization (will use polices (put can on route))
+        // Gate::authorize('admin-controller');
         // $users = User::all();
         $users = User::paginate(5);
         return view('users.index', compact('users'));
@@ -19,12 +21,16 @@ class UserController extends Controller
    
     public function create()
     {
+         // Admin Authorization (will use polices (put can on route))
+        // Gate::authorize('admin-controller');
         return view('users.create');
     }
  
   
     public function store(Request $request)
     {
+         // Admin Authorization (will can on route)
+        // Gate::authorize('admin-controller');
        $data= $request->validate([
         'name' =>[ 'required','string','min:2','max:100'],
         'email' => ['required','email','unique:users,email'],
@@ -38,10 +44,10 @@ class UserController extends Controller
     }
 
  
-    public function show(string $id)
-    {
-        //
-    }
+    // public function show(string $id)
+    // {
+
+    // }
     
 
 
@@ -54,9 +60,6 @@ class UserController extends Controller
     public function update(Request $request, string $id)
     {
         $user = User::findOrFail($id);
-
-
-
         $data = $request->validate([
             'name' => ['required', 'string', 'min:2', 'max:100'],
             'email' => ['required', 'email', Rule::unique('users')->ignore($user->id)],
@@ -64,27 +67,28 @@ class UserController extends Controller
             'password_confirmation' => ['nullable', 'same:password'],
             'type' => ['required', 'in:admin,writer'],
         ]);
-
         if (!$data['password']) {
             unset($data['password']);
             unset($data['password_confirmation']);
         } else {
             $data['password'] = bcrypt($data['password']);
         }
-
         $user->update($data);
-
         return redirect()->route('users.index')->with('success', 'User updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(string $id)
     {
-        $user = User::findOrfail($id);
+        $user = User::findOrFail($id);
+        
+        // Delete the user's posts first
+        $user->posts()->delete();
+        
+        // Now delete the user
         $user->delete();
-        return back()->with('success','User  deleted successfully');
+        
+        return back()->with('success', 'User and associated posts deleted successfully');
     }
 
     public function posts(string $id)

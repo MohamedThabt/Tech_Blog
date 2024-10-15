@@ -36,14 +36,17 @@
                         </div>
                         <div class="mb-3">
                             <label for="user_id" class="form-label" style="color: #526D82;"><i class="fas fa-user"></i> Users</label>
-                            <select class="form-select" name="user_id" id="user_id" style="border-color: #526D82;">
+                            <!-- <select class="form-select" name="user_id" id="user_id" style="border-color: #526D82;">
                                 <option value="">Select a user</option>
                                 @foreach($users as $user)
                                     <option value="{{ $user->id }}" {{ old('user_id') == $user->id ? 'selected' : '' }}>
                                         {{ $user->name }}
                                     </option>
                                 @endforeach
-                            </select>
+                            </select> -->
+                            <input type="text" class="form-control" name="user_name" value="{{ $user->name }}" style="border-color: #526D82;" readonly>
+                            <input type="hidden" name="user_id" value="{{ $user->id }}">
+                            
                         </div>
                         <div class="mb-3">
                             <label for="image" class="form-label" style="color: #526D82;"><i class="fas fa-image"></i> Image</label>

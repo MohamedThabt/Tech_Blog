@@ -71,22 +71,23 @@
         <div class="container">
             <div class="row gy-4">
                 <div class="col-md-6">
-                    <h5>CodeCraft Insights</h5>
+                    <h5>Tech Blog</h5>
                     <p>Empowering developers with cutting-edge insights and knowledge.</p>
                 </div>
                 <div class="col-md-6 text-md-end">
                     <h5>Connect With Us</h5>
                     <div>
-                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
-                        <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
-                        <a href="#" class="text-white me-3"><i class="fab fa-linkedin-in fa-lg"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-github fa-lg"></i></a>
+                        <a href="https://www.facebook.com/mohamed.thabet.545" class="text-white me-3" target="_blank" ><i class="fab fa-facebook-f fa-lg"></i></a>
+                        <a href="https://twitter.com/Mohamed13546660" class="text-white me-3" target="_blank" ><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="https://www.linkedin.com/in/mohamed-thabet-5694462a0" class="text-white me-3" target="_blank" ><i class="fab fa-linkedin-in fa-lg"></i></a>
+                        <a href="https://github.com/MohamedThabt" class="text-white" target="_blank" ><i class="fab fa-github fa-lg"></i></a>
+
                     </div>
                 </div>
             </div>
             <hr>
             <div class="text-center">
-                <p class="mb-0">&copy; 2024 CodeCraft Insights. Created by Mohamed Thabet, Backend Engineer.</p>
+                <p class="mb-0">&copy; 2024 Tech Blog. Created by Mohamed Thabet, Backend Engineer.</p>
             </div>
         </div>
     </footer>

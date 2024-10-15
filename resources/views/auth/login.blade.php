@@ -49,16 +49,8 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" 
-                                           {{ old('remember') ? 'checked' : '' }} style="border-color: #526D82;">
-
-                                    <label class="form-check-label" for="remember" style="color: #526D82;">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
+                        <div class="row mb-3 ">
+                            <div class="col-md-6 offset-md-4 ">
                             </div>
                         </div>
 
@@ -67,12 +59,6 @@
                                 <button type="submit" class="btn" style="background-color: #526D82; color: white;">
                                     {{ __('Login') }}
                                 </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}" style="color: #526D82;">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
                             </div>
                         </div>
                     </form>
