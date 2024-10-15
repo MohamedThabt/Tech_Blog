@@ -18,12 +18,12 @@
             </thead>
             <tbody>
                 @foreach ($user->posts as $post)
-                <tr>
+                <tr onclick="window.location='{{ url('posts/' . $post->id) }}';" style="cursor: pointer;">
                     <td>{{$loop->iteration}}</td>
                     <td>{{\Str::limit($post->title,10)}}</td>
                     <td>{{ \Str::limit( $post->description,50)}}</td>
                     <td>{{$post->user->name}}</td>
-                    <td >
+                    <td onclick="event.stopPropagation();">
                         <form action="{{url('posts/'.$post->id.'/edit')}}" method="post" class="d-inline-block">
                             @csrf
                             @method('PUT')

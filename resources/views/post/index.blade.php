@@ -43,18 +43,18 @@
                                         <img src="{{ $post->image() }}" alt="{{ $post->title }}" class="img-thumbnail rounded-circle" style="width: 50px; height: 50px; object-fit: cover;">
                                     </td>
                                     <td onclick="event.stopPropagation();">
-                                        @can('post-upate-delete',$post)
-                                        <form action="{{url('posts/'.$post->id.'/edit')}}" method="post" class="d-inline-block">
-                                            @csrf
-                                            @method('PUT')
-                                            <button class="btn btn-edit"><i class="fas fa-edit"></i></button>
-                                        </form>
-                                        <form action="{{url('posts/'.$post->id)}}" method="post" class="d-inline-block">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-delete"><i class="fas fa-trash-alt"></i></button>
-                                        </form>
-                                        @endcan
+                                        @if(Gate::check('post-upate-delete', $post) || Gate::check('admin-controller'))
+                                            <form action="{{ url('posts/'.$post->id.'/edit') }}" method="post" class="d-inline-block">
+                                                @csrf
+                                                @method('PUT')
+                                                <button class="btn btn-edit"><i class="fas fa-edit"></i></button>
+                                            </form>
+                                            <form action="{{ url('posts/'.$post->id) }}" method="post" class="d-inline-block">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-delete"><i class="fas fa-trash-alt"></i></button>
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach
