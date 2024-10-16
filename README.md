@@ -128,6 +128,13 @@ You can now access the application at `http://localhost:8000`
 5. **Searching Posts**
    - Use the search functionality to find posts by title
 
+## Demo
+
+You can check out a live demo of the project here:
+[Tech_Blog Demo](http://www.tech-blog.free.nf/?i=1)
+
+(Note: You may need to use a VPN to access the demo link.)
+
 ## Contributing
 
 Contributions to improve Tech_Blog are welcome. Please follow these steps:
@@ -141,4 +148,3 @@ Contributions to improve Tech_Blog are welcome. Please follow these steps:
 ## License
 
 This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
