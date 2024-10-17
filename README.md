@@ -131,7 +131,7 @@ You can now access the application at `http://localhost:8000`
 ## Demo
 
 You can check out a live demo of the project here:
-[Tech_Blog Demo](http://www.tech-blog.free.nf/?i=1)
+[Tech_Blog Demo](https://www.tech-blog.free.nf/?i=1)
 
 (Note: You may need to use a VPN to access the demo link.)
 
